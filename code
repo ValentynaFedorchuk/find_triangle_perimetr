@@ -1,0 +1,60 @@
+using System;
+using System.Reflection.Metadata.Ecma335;
+
+namespace MyApp
+{
+    internal class Program
+    {
+        class Point {//точка
+            public int x, y;
+            public Point(int x, int y) 
+            {
+                this.x = x;
+                this.y = y;
+            }
+
+        }
+        class Triangle {//трикутник 
+            private List<Point> points;//список точок
+            public Triangle(List<Point> points) {
+                if (points.Count != 3)
+                {
+                    throw new ArgumentException("Трикутник повинен мати рівно три точки.");
+                }
+                this.points = points;
+            }
+
+            public double FindSegmentLength(Point A, Point B)//довжина відрізка(сторони)
+            {
+                return Math.Sqrt(Math.Pow(B.x - A.x, 2) + Math.Pow(B.y - A.y, 2));
+            }
+
+            public double FindPerimetr() {//периметр
+                double perimetr;
+                perimetr = FindSegmentLength(points[0], points[1]) + FindSegmentLength(points[0], points[2]) +
+                    FindSegmentLength(points[2], points[1]);
+                return perimetr;
+            }
+        }
+        static void Main(string[] args)
+        {
+            List<Point> points = new List<Point>();
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Введiть координати {i + 1} - ї точки:");
+                Console.Write("X: ");
+                int x = int.Parse(Console.ReadLine());
+
+                Console.Write("Y: ");
+                int y = int.Parse(Console.ReadLine());
+
+                Point point = new Point(x, y); // Створюємо нову точку
+                points.Add(point);///додаємо до списку
+            }
+            Triangle triangle = new Triangle(points);
+            Console.WriteLine($"Периметр трикутника становить {triangle.FindPerimetr()}");
+            
+        }
+
+    }
+}
