@@ -7,18 +7,18 @@ namespace MyApp
         static void Main(string[] args)
         {
             int[] array1 = { 1, 2, 3, 4, 5 };
+            int[] array2 = { 6, 7, 8, 9, 10 };
+            int[] resultArray = new int[array1.Length + array2.Length]; 
             Console.Write("Array 1: ");
             foreach (int element in array1)
             {
                 Console.Write(element + " ");
             }
-            int[] array2 = { 6, 7, 8, 9, 10 };
             Console.Write("\nArray 2: ");
             foreach (int element in array2)
             {
                 Console.Write(element + " ");
             }
-            int[] resultArray = new int[array1.Length + array2.Length]; 
             for (int i = 0; i < array1.Length; i++)
             {
                 resultArray[i] = array1[i];
